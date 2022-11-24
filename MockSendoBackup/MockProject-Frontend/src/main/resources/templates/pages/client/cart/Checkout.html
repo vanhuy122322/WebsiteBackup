@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutClient.html}"
+>
+  <head> </head>
+
+  <body>
+    <div class="page mt-5 mb-4" layout:fragment="content">
+      <div class="container">
+        <form action="/checkout" method="post">
+          <div class="main">
+            <div class="row">
+              <div class="col-sm-7">
+                <div class="address mb-3">
+                  <h4>Địa chỉ nhận hàng</h4>
+                  <span th:text="${user.username}"></span>
+                  <input
+                    type="hidden"
+                    name="username"
+                    th:value="${user.username}"
+                  />
+                  | <span th:text="${user.phone}"></span> <br />
+                  <input type="hidden" name="phone" th:value="${user.phone}" />
+                  <input
+                    type="text"
+                    placeholder="Nhập vào địa chỉ giao hàng...."
+                    class="form-control"
+                    th:value="${user.location}"
+                    name="location"
+                  />
+                </div>
+                <div class="method-delivery mb-3">
+                  <h4>Phương thức giao hàng</h4>
+                  <select
+                    name="methodDelivery"
+                    id="method-delivery"
+                    class="form-control"
+                  >
+                    <option value="" hidden disabled selected>
+                      Chọn Phương Thức Giao Hàng
+                    </option>
+                    <option value="giao-hang-nhanh">Giao hàng nhanh</option>
+                    <option value="hoa-toc">Hỏa tốc</option>
+                  </select>
+                </div>
+                <div class="method-payment">
+                  <h4>Phương thức thanh toán</h4>
+                  <select
+                    name="methodPayment"
+                    id="method-payment"
+                    class="form-control"
+                  >
+                    <option value="" hidden disabled selected>
+                      Chọn Phương Thức Thanh Toán
+                    </option>
+                    <option value="">Tiền mặt</option>
+                    <option value="">ATM</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <div class="voucher mb-3">
+                  <h4>Mã ưu đãi Sendo</h4>
+                  <select name="voucher" id="voucher" class="form-control">
+                    <option value="" hidden disabled selected>
+                      Chọn Voucher
+                    </option>
+                    <option value="10">Giảm 10% trên tổng giá trị</option>
+                    <option value="20">Giảm 20% trên tổng giá trị</option>
+                  </select>
+                </div>
+                <div
+                  class="infor mb-3"
+                  th:each="productInCart, index : ${productInCarts}"
+                >
+                  <h4>Thông tin thanh toán</h4>
+                  Shopname <br />
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <img
+                        th:src="${productInCart.image}"
+                        alt=""
+                        style="width: 48px; height: 48px"
+                      />
+                      <input
+                        type="hidden"
+                        th:name="${'productInCarts['+index.index+'].image'}"
+                        th:value="${productInCart.image}"
+                      />
+                    </div>
+                    <div class="col-sm-10">
+                      <b th:text="${productInCart.name}"></b>
+                      <input
+                        type="hidden"
+                        th:name="${'productInCarts['+index.index+'].name'}"
+                        th:value="${productInCart.name}"
+                      />
+                      <br />
+                      <span
+                        th:text="${ #numbers.formatDecimal(productInCart.price, 0, 'POINT', 0, 'COMMA') + 'đ'}"
+                      ></span>
+                      <input
+                        type="hidden"
+                        th:name="${'productInCarts['+index.index+'].price'}"
+                        th:value="${productInCart.price}"
+                      />
+                      <span th:text="${'x'+ productInCart.quantity}"></span>
+                      <input
+                        type="hidden"
+                        th:name="${'productInCarts['+index.index+'].quantity'}"
+                        th:value="${productInCart.quantity}"
+                      />
+                    </div>
+                  </div>
+                  <span th:text="${'Size: ' + productInCart.size}"></span>
+                  <input
+                    type="hidden"
+                    th:name="${'productInCarts['+index.index+'].size'}"
+                    th:value="${productInCart.size}"
+                  />
+                  |
+                  <span th:text="${'Color: ' + productInCart.color}"></span>
+                  <input
+                    type="hidden"
+                    th:name="${'productInCarts['+index.index+'].color'}"
+                    th:value="${productInCart.color}"
+                  />
+                </div>
+                <div class="total mb-3">
+                  <span
+                    th:text="${'Tiền Hàng: ' + #numbers.formatDecimal(total, 0, 'POINT', 0, 'COMMA') + 'đ'}"
+                  ></span>
+                  <input
+                    type="hidden"
+                    th:value="${total}"
+                    id="total-product"
+                    name="totalProduct"
+                  />
+                  <br />
+                  Phí giao hàng:<span id="delivery-money">0đ</span> <br />
+                  <input
+                    type="hidden"
+                    id="delivery-money-value"
+                    name="totalDelivery"
+                  />
+                  Tổng thanh toán: <span id="total-checkout">0đ</span>
+                  <input
+                    type="hidden"
+                    id="total-checkout-value"
+                    name="totalCheckout"
+                  />
+                </div>
+                <div class="checkout">
+                  <button
+                    type="submit"
+                    class="btn btn-danger"
+                    style="width: 100%"
+                  >
+                    Đặt mua
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script
+    th:src="@{/js/client/handlerCheckout.js}"
+    th:inline="javascript"
+    layout:fragment="jsCode"
+  ></script>
+</html>

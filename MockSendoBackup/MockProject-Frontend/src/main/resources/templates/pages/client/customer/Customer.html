@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutClient.html}"
+>
+  <head> </head>
+
+  <body>
+    <div layout:fragment="content">
+      <div class="container-profile mt-4">
+        <div class="row">
+          <div
+            class="col-sm-4"
+            th:replace="fragments/client/customer/LeftBar.html :: LeftBar"
+          ></div>
+          <div class="col-sm-8 right-user-profile">
+            <div class="user-top-title">
+              <h4>Thông tin tài khoản</h4>
+              <div>
+                <span
+                  th:text="${message}"
+                  style="color: red"
+                  id="message-text"
+                ></span>
+              </div>
+              <div class="row mt-5">
+                <div class="col-sm-2">
+                  <div class="avatar_3KH_">
+                    <div>
+                      <img
+                        src="data:image/gif;base64,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"
+                        title="Huy"
+                      />
+                      <button>Thay đổi</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-10">
+                  <form
+                    th:object="${user}"
+                    action="/customer/update"
+                    method="post"
+                    name="form-updateCustomer"
+                    id="form-updateCustomer"
+                  >
+                    <div class="row">
+                      <input th:field="*{id}" type="text" hidden />
+                      <input th:field="*{username}" type="text" hidden />
+                      <label class="col-sm-2 col-form-label">Danh xưng *</label>
+                      <div class="col-sm-10">
+                        <div class="d-inline">
+                          <input
+                            type="radio"
+                            th:field="*{gender}"
+                            id="gender1"
+                            value="Nam"
+                          />
+                          <label for="gender1">Anh</label>
+                        </div>
+                        <div class="d-inline">
+                          <input
+                            type="radio"
+                            th:field="*{gender}"
+                            id="gender2"
+                            value="Nu"
+                          />
+                          <label for="gender2">Chị</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="name" class="col-sm-2 col-form-label"
+                        >Họ và tên *</label
+                      >
+                      <div class="col-sm-10 input-infor">
+                        <input
+                          type="text"
+                          th:field="*{fullName}"
+                          class="form-control"
+                          id="name"
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="phone" class="col-sm-2 col-form-label"
+                        >Số điện thoại
+                      </label>
+                      <div class="col-sm-10 input-infor">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="phone"
+                          th:field="*{phone}"
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label"
+                        >Email
+                      </label>
+                      <div class="col-sm-10 input-infor">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="staticEmail"
+                          th:field="*{email}"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="birthDate" class="col-sm-2 col-form-label"
+                        >Ngày sinh</label
+                      >
+                      <div class="col-sm-10 input-infor">
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="birthDate"
+                          th:field="*{birthDate}"
+                        />
+                      </div>
+                      <span id="error-birthdate" style="color: red"></span>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="location" class="col-sm-2 col-form-label"
+                        >Địa chỉ nhận hàng</label
+                      >
+                      <div class="col-sm-10 input-infor">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="location"
+                          th:field="*{location}"
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label
+                        for="staticEmail"
+                        class="col-sm-2 col-form-label"
+                      ></label>
+                      <div class="col-sm-10">
+                        <a
+                          class="btn"
+                          style="text-decoration: none"
+                          id="btn-changePassword"
+                          >Đổi mật khẩu</a
+                        >
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label
+                        for="staticEmail"
+                        class="col-sm-2 col-form-label"
+                      ></label>
+                      <div class="col-sm-10">
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          id="btn-update"
+                        >
+                          Cập nhật
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <div
+                    class="contain-changepassword col-8"
+                    style="display: none"
+                  >
+                    <form
+                      name="form-changepassword"
+                      action="/customer/change-password"
+                      method="post"
+                    >
+                      <input
+                        type="text"
+                        name="idFormChange"
+                        hidden
+                        id="id-formChange"
+                        th:value="${user.id}"
+                      />
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label"
+                          >Old password</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="exampleInputEmail1"
+                          name="oldPassword"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label"
+                          >New password</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          name="newPassword"
+                          id="exampleInputPassword1"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword2" class="form-label"
+                          >Confirm new password</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="exampleInputPassword2"
+                          name="confirmPassword"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          style="color: red"
+                          class="form-check-label"
+                          for="exampleCheck1"
+                          id="error-message-changeP"
+                        ></label>
+                      </div>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="submit-form-changepassword"
+                      >
+                        Submit
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-back-update"
+                        id=""
+                      >
+                        Close
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    th:src="@{/js/client/user/handlerCustomer.js}"
+    th:inline="javascript"
+    layout:fragment="jsCode"
+  ></script>
+</html>

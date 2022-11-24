@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutClient.html}">
+<head>
+</head>
+
+<body>
+	<div class="page" layout:fragment="content">
+		<div class="container">
+			<div class="banner">
+				<a href="/"><img th:src=@{/img/banner.png} alt="" /></a>
+			</div>
+			<div th:replace="/fragments/client/shop/Header.html :: Header"></div>
+			<div
+				th:replace="/fragments/client/shop/Navigation.html :: Navigation"></div>
+			<div class="content">
+				<div class="row">
+					<h5>QUẢN LÝ ĐƠN HÀNG</h5>
+					<div class="col-sm-8">
+						<div class="title border border-dark mb-3"
+							style="border-radius: 10px;">
+							<div class="mt-3 border-bottom border-dark ms-3 me-3">
+								<div class="main" style="margin-left: 10px"
+									th:each="order : ${checkout}">
+									<div class="card-order">
+										<table class="mb-3">
+											<thead>
+												<tr>
+													<th><span>Mã đơn hàng: <a href=""
+															class="btn text-primary" th:text="${order.checkoutCode}">#21498214</a>
+														<lable class="text-success" th:text="${order.status}"></lable>
+															| <a  th:href="${'/shop/'+shop.name+'/checkout-detail?checkoutCode=' + order.checkoutCode}" class="btn text-primary">chi tiết</a>
+													</span></th>
+													<th style="padding-left: 100px">Người nhận</th>
+													<th style="padding-left: 100px">Tổng tiền</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Đặt ngày: <span
+														th:text="${#temporals.format(order.createdDate, 'dd/MM/yyyy HH:mm:ss')}"></span>
+													</td>
+													<td style="padding-left: 100px">Lê Minh Tỏ</td>
+													<td style="padding-left: 100px"
+														th:text="${ #numbers.formatDecimal(order.totalCheckout, 0, 'POINT', 0, 'COMMA') + 'đ'}"></td>
+												</tr>
+											</tbody>
+										</table>
+										<div>
+											<label>Shop:</label><label th:text="${order.shopName}"></label>
+										</div>
+										<div class="card-product"
+											th:each="productInCart : ${order.productInCarts}">
+											<div class="row">
+												<div class="col-sm-2">
+													<img th:src="${productInCart.image}" alt="hình"
+														style="width: 78px; height: 78px" />
+												</div>
+												<div class="col-sm-5">
+													<div th:text="${productInCart.name}"></div>
+													<div th:text="${'Size: '+productInCart.size}"></div>
+													<div th:text="${'Color: '+productInCart.color}"></div>
+												</div>
+												<div class="col-sm-5">
+													<div th:text="${'Số lượng: '+productInCart.quantity}"></div>
+													<div
+														th:text="${'Đơn giá : '+#numbers.formatDecimal(productInCart.price, 0, 'POINT', 0, 'COMMA') + 'đ'}"></div>
+												</div>
+											</div>
+										</div>
+										<div class="cart-order-footer">
+											<button class="btn btn-success" style="margin-left: 70%"
+												th:value="${order.checkoutCode}"
+												onclick="updateCheckout(this.value)">Cập nhật đơn hàng</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/js/client/handlerShop.js}" th:inline="javascript"
+		layout:fragment="jsCode"></script>
+</body>
+
+</html>

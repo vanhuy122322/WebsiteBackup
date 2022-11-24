@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutClient.html}"
+>
+  <head> </head>
+
+  <body>
+    <div class="page" layout:fragment="content">
+      <div class="main">
+        <div class="row">
+          <div class="row category-wrapp">
+            <div class="row category-contain">
+              <ul class="category">
+                <li th:each="category : ${categories}">
+                  <button
+                    class="button-collapse-show-category"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    th:data-bs-target="${'#' + category.slug}"
+                    th:text="${category.name}"
+                    th:value="${category.name}"
+                    onclick="btnSearchCategoryName(this.value)"
+                  ></button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row sub-category-wrap banner-wrap">
+          <div class="sub-category-contain" th:each="category : ${categories}">
+            <div class="collapse" th:id="${category.slug}">
+              <div class="row" style="width: 1248px">
+                <div
+                  class="col-sm-2"
+                  th:each="subCategory : ${category.subCategories}"
+                  th:if="${!subCategory.deleteStatus}"
+                >
+                  <div class="category-item">
+                    <a
+                      th:href="${'/category/'+subCategory.name}"
+                      class="link-category-item"
+                    >
+                      <img
+                        th:src="${subCategory.image}"
+                        alt=""
+                        class="category-item-img"
+                      />
+                      <span
+                        class="category-item-title"
+                        th:text="${subCategory.name}"
+                      >
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="banner-contain" style="margin-left: 2%">
+          <a href="/"><img th:src=@{/img/banner.png} alt="" /></a>
+        </div>
+        <div class="main-product-items-wrap">
+          <div class="main-prodcut-items-contain row" id="load-product-item">
+            <div class="product-item" th:each="product : ${products}">
+              <a th:href="${'/product-detail/' + product.slug}">
+                <div class="product-item-detail">
+                  <div class="product-item-detail-contain">
+                    <div class="product-item-detail-img">
+                      <img
+                        class="product-item-img"
+                        th:src="${product.image}"
+                        alt=""
+                        style="max-height: 204px"
+                      />
+                    </div>
+                    <div class="product-item-detail-content">
+                      <span>
+                        <img
+                          mr="1"
+                          src="https://media3.scdn.vn/img4/2020/07_30/h6fJaiL5WkEbDU2eQRZb.png"
+                          alt="shop-badge"
+                          class=""
+                        />
+                        <span
+                          th:text="${product.name}"
+                          style="word-wrap: break-word"
+                        ></span>
+                      </span>
+                    </div>
+                    <div class="product-item-detail-content-price">
+                      <span
+                        th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA') + 'đ'}"
+                      ></span>
+                    </div>
+                    <div class="">
+                      Số lượng:
+                      <span th:text="${product.amount}"></span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      th:src="@{/js/client/handlerHome.js}"
+      th:inline="javascript"
+      layout:fragment="jsCode"
+    ></script>
+  </body>
+</html>

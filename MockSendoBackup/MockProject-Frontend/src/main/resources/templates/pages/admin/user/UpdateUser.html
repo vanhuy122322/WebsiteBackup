@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutAdmin.html}">
+
+<head>
+</head>
+
+<body>
+	<div style="margin: 50px" layout:fragment="content">
+		<div class="row justify-content-center">
+			<div class="col-9">
+				<h1 style="text-align: center;">User Management</h1>
+			</div>
+		</div>
+		<p th:text="${message}" id="text-message" style="color: red;"></p>
+		<form action="/admin/user/update" method="post" th:object="${user}"
+			name="form-update-user" class="col-8">
+			<input type="text" th:field="*{id}" hidden id="id-formUpdate">
+			<div class="mb-3">
+				<label for="fullName" class="form-label">Name</label> <input
+					type="text" class="form-control" id="fullName"
+					th:field="*{fullName}">
+			</div>
+			<div class="mb-3">
+				<label for="username" class="form-label">Username</label> <input
+					type="text" class="form-control" id="username"
+					th:field="*{username}">
+			</div>
+			<div class="mb-3">
+				<label for="email" class="form-label">Email address</label> <input
+					type="email" class="form-control" id="email" th:field="*{email}"
+					readonly>
+			</div>
+			<div class="mb-3">
+				<label for="gender" class="form-label">Gender</label> <select
+					class="form-select" id="gender" th:field="*{gender}">
+					<option value="Nam">Nam</option>
+					<option value="Nữ">Nữ</option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label for="birthDate" class="form-label">BirthDate</label> <input
+					type="date" class="form-control" id="birthDate"
+					th:field="*{birthDate}">
+			</div>
+			<button type="submit" class="btn btn-primary">Update</button>
+			<button type="button" class="btn btn-primary" id="btn-changepassword">Change
+				Password</button>
+			<button type="button" class="btn btn-primary" id="btn-add-role">Update
+				Role</button>
+		</form>
+		<div class="contain-changepassword">
+			<form name="form-changepassword" action="/admin/user/change-password"
+				method="post">
+				<input type="text" name="idFormChange" hidden id="id-formChange">
+				<div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Old
+						password</label> <input type="password" class="form-control"
+						id="exampleInputEmail1" name="oldPassword">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">New
+						password</label> <input type="password" class="form-control"
+						name="newPassword" id="exampleInputPassword1">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword2" class="form-label">Confirm
+						new password</label> <input type="password" class="form-control"
+						id="exampleInputPassword2" name="confirmPassword">
+				</div>
+				<div class="mb-3">
+					<label style="color: red;" class="form-check-label"
+						for="exampleCheck1" id="error-message-changeP"></label>
+				</div>
+				<button type="button" class="btn btn-primary"
+					id="submit-form-changepassword">Submit</button>
+				<button type="button" class="btn btn-primary btn-back-update" id="">Close</button>
+
+			</form>
+		</div>
+
+		<div class="contain-addrole" style="display: none;">
+			<form name="form-addrole" action="/admin/user/add-role" method="post" th:object="${user}">
+				<div class="mb-3">
+					<label for="username" class="form-label">User name</label> <input
+						type="text" class="form-control" id="username" th:field="*{username}">
+				</div>
+				<div class="mb-3 row">
+					<select class="form-select form-control w-100" multiple
+						aria-label="multiple select example" th:field="*{roleNames}">
+						<option th:each="role : ${T(fa.training.spring.dto.user.RoleName).values()}"
+								th:value="${role}" th:text="${role}"						
+						></option>
+					</select>
+				</div>
+				<button type="button" class="btn btn-primary"
+					id="submit-form-addrole">Submit</button>
+				<button type="button" class="btn btn-primary btn-back-update" id="">Close</button>
+
+			</form>
+		</div>
+
+	</div>
+
+</body>
+<script th:src=@{/js/admin/user/handlerUpdateUser.js}
+	th:inline="javascript" layout:fragment="jsCode"></script>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutClient.html}">
+<head>
+<link rel="shortcut icon" href="#">
+<link rel="stylesheet" th:href=@{/css/productSubCategory.css}>
+</head>
+
+<body>
+	<div class="page mb-4" layout:fragment="content">
+		<div class="background">
+			<div class="container-product">
+				<div class="row">
+					<div>
+						<div class="sendo-select">
+							<div>
+								<a style="text-decoration: none" href="sendo.vn">Sendo.vn</a> <a>/</a>
+							    <input  th:value="${category.name}" id="category" hidden>
+							    <a style="text-decoration: none" th:text="${subcategory}"></a>
+							</div>
+						</div>
+						<div class="sendo-select-category">
+							<span>Đầm váy</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2 category">
+						<div class="select-category">
+							<div class="category-sendo">
+								<span class="category-navbar">Danh mục</span>
+							</div>
+							<a class="close-category" href="/category"> Về trang tất cả
+								các danh mục </a>
+							<div class="subcategory-sendo">
+								<div class="subcategory-sendo">
+									<a class="subcategory-navbar text-dark" style="text-decoration: none;" th:href="${'/category/' + category.name}" th:text="${category.name}"></a>
+								</div>
+								<div class="sub-category">
+									<div class="sub-category-sendo"
+										th:each="subcategory : ${category.subCategories}">
+										<a class="subcategory-navbar text-body"
+											th:href="${'/Subcategory/' + subcategory.name}"
+											style="text-decoration: none;" th:text="${subcategory.name}"></a>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<hr class="d7e-5d67fd d7e-ad15a4" />
+						<hr class="d7e-5d67fd d7e-ad15a4" />
+						<div class="select-category">
+							<div class="category-sendo">
+								<span class="category-navbar">Khoảng giá</span>
+								<button>
+									<i class="fa-sharp fa-solid fa-chevron-down"></i>
+								</button>
+							</div>
+							<div class="subcategory-sendo">
+								<div class="subcategory-sendo">
+									<div class="ml-4">
+										<input type="number" id="product-from-price"
+											class="text-center" placeholder="MIN"
+											style="height: 30px; width: 80px" /> <input type="number"
+											id="product-to-price" class="ml-4 text-center"
+											placeholder="MAX" style="height: 30px; width: 80px" />
+										<button class="border border-secondary btn-apply"
+											onclick="btnSearchCategorys()">
+											<span>Áp dụng</span>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr class="d7e-5d67fd d7e-ad15a4" />
+						<div class="select-category">
+							<div class="category-sendo">
+								<span class="category-navbar">Màu sắc</span>
+								<button>
+									<i class="fa-sharp fa-solid fa-chevron-down"></i>
+								</button>
+							</div>
+							<div>
+								<div>
+									<div class="ml-4 color-product" style="display: flex">
+										<div class="check_pink">
+											<input type="checkbox" name="check_color"
+												class="d7e-7de7af check_prink" value="Prink"
+												onchange="btnSearchCategorys()" />
+										</div>
+										<div class="check_gray">
+											<input type="checkbox" name="check_color" class="d7e-7de7af"
+												value="Gray" onchange="btnSearchCategorys()" />
+										</div>
+										<div class="check_red">
+											<input type="checkbox" name="check_color" class="d7e-7de7af"
+												value="Red" onchange="btnSearchCategorys()" />
+										</div>
+										<div class="check_brown">
+											<input type="checkbox" name="check_color" class="d7e-7de7af"
+												value="Brown" onchange="btnSearchCategorys()" />
+										</div>
+										<div class="check_yellow">
+											<input type="checkbox" name="check_color" class="d7e-7de7af"
+												value="Yellow" onchange="btnSearchCategorys()" />
+										</div>
+										<div class="check_black">
+											<input type="checkbox" name="check_color" class="d7e-7de7af"
+												value="Black" onchange="btnSearchCategorys()" />
+										</div>
+									</div>
+									<div style="display: flex;">
+										<div class="check_blue">
+											<input type="checkbox" name="check_color" class="d7e-7de7af"
+												value="Blue" onchange="btnSearchCategorys()" />
+										</div>
+										<div class="check_white">
+											<input type="checkbox" name="check_color" class="d7e-7de7af"
+												value="White" onchange="btnSearchCategorys()" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr class="d7e-5d67fd d7e-ad15a4" />
+						<div class="select-category">
+							<div class="category-sendo">
+								<span class="category-navbar">Size</span>
+								<button>
+									<i class="fa-sharp fa-solid fa-chevron-down"></i>
+								</button>
+							</div>
+							<div class="subcategory-sendo">
+								<div class="subcategory-sendo">
+									<div class="ml-4" th:each="size :${sizes}">
+										<input readonly="" type="checkbox" name="check_size"
+											class="d7e-7de7af" th:value="${size}"
+											style="height: 15px; width: 15px"
+											onchange="btnSearchCategorys()" /><span class="ml-2"
+											th:text="${size}"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr class="d7e-5d67fd d7e-ad15a4" />
+						<div class="select-category">
+							<div class="category-sendo">
+								<span class="category-navbar">Chất liệu</span>
+								<button>
+									<i class="fa-sharp fa-solid fa-chevron-down"></i>
+								</button>
+							</div>
+							<div class="subcategory-sendo">
+								<div class="subcategory-sendo">
+									<div class="ml-4" th:each="material : ${materials}">
+										<input type="checkbox" name="check_material" class="d7e-7de7af"
+											th:value="${material}" style="height: 15px; width: 15px"
+											onchange="btnSearchCategorys()" /><span class="ml-2"
+											th:text="${material}"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr class="d7e-5d67fd d7e-ad15a4" />
+						<div class="select-category">
+							<div class="category-sendo">
+								<span class="category-navbar">Xuất xứ</span>
+								<button>
+									<i class="fa-sharp fa-solid fa-chevron-down"></i>
+								</button>
+							</div>
+							<div class="subcategory-sendo">
+								<div class="subcategory-sendo">
+									<div class="ml-4" th:each="origin : ${origins}">
+										<input type="checkbox" name="check_origin" class="d7e-7de7af"
+											th:value="${origin}" style="height: 15px; width: 15px"
+											onchange="btnSearchCategorys()" /><span class="ml-2"
+											th:text="${origin}"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-10">
+						<div class="row">
+							<div class="pt-1" style="height: 100%; width: 100%">
+								<div class="related-product mt-2" id="table-tbody-content"
+									style="display: flex">
+									<div class="info-related-product"
+										th:each="product : ${products}"
+										th:if="${!product.deleteStatus}" )>
+										<a th:href="${'/product-detail/' + product.slug}" style="text-decoration: none;">
+											<div class="card" style="width: 13.7rem">
+												<img th:src="${product.image}" class="card-img-top"
+													alt="..." />
+												<div class="card-body">
+													<div style="display: flex;">
+														<img
+															src="https://media3.scdn.vn/img4/2020/07_30/h6fJaiL5WkEbDU2eQRZb.png"
+															alt="Shop's badge" class="image-shop"
+															style="width: 50px; height: 30px"> <span
+															class="d7e-03afbc _405-7e8814 undefined d7e-d87aa1"
+															th:text="${product.name}"></span>
+													</div>
+													<div class="d7e-6f98d6">
+														<span class="_405-dff05d undefined d7e-266ced d7e-fb1c84"
+															th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA') + 'đ'}"> </span>
+														<div class="">
+															<span class="undefined d7e-7ef9b0 d7e-5269d7">379.000đ</span><span
+																class="d7e-ee369c undefined d7e-7ef9b0 d7e-a4f628"
+																ml="1">-22%</span>
+														</div>
+													</div>
+													<div class="d7e-f8515b d7e-451688" py="1">
+														<div
+															class="d7e-f8515b d7e-451688 d7e-dd9ef1 d7e-22372d _405-a2690e d7e-a90f22 d7e-2243f4"
+															style="background-color: rgb(241, 243, 249)">
+															<img
+																src="https://media3.scdn.vn/img4/2022/06_24/V5PHsdxRbMf35yH1KO0h.png"
+																alt="promotion-icon" class="" /><span
+																class="d7e-43a364 undefined d7e-7ef9b0" ml="2"
+																style="color: rgb(19, 48, 150)">Trả góp Kredivo</span>
+														</div>
+													</div>
+													<div
+														class="d7e-faee4b _405-2c7cab _405-dbd399 d7e-a90f22 d7e-04f3bc d7e-2243f4"
+														mt="1">
+														<span class="undefined d7e-d87aa1">Đã bán 147</span>
+														<div class="_405-934736 d7e-a90f22 d7e-5af16c d7e-2243f4"></div>
+													</div>
+													<div class="d7e-faee4b _405-a4dd8d _405-344c14 d7e-a90f22"
+														style="display: flex;">
+														<span class="undefined d7e-d87aa1"
+															th:text="${product.productDetail.origin}" ></span>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script th:src=@{/js/client/handlerProductCategory.js}
+		th:inline="javascript" layout:fragment="jsCode"></script>
+</html>

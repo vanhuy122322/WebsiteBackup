@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutAdmin.html}"
+>
+  <head> </head>
+
+  <body>
+    <div style="margin: 50px" layout:fragment="content">
+      <div class="row">
+        <div class="col-9">
+          <h1>Product Management</h1>
+        </div>
+      </div>
+      <table
+        class="table table-striped border table-responsive"
+        id="product-table"
+      >
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>name</td>
+            <td>Price</td>
+            <td>Amount</td>
+            <td>Image</td>
+            <td>Slug</td>
+            <td>CreatedDate</td>
+            <td>UpdatedDate</td>
+            <td>DeleteStatus</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td
+              th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA') + 'đ'}"
+            ></td>
+            <td th:text="${product.amount}"></td>
+            <td>
+              <img
+                th:src="${product.image}"
+                alt=""
+                style="max-width: 70px; max-height: 100px"
+              />
+            </td>
+            <td th:text="${product.slug}"></td>
+            <td
+              th:text="${#temporals.format(product.createdDate, 'dd/MM/yyyy HH:mm:ss')}"
+            ></td>
+            <td
+              th:text="${#temporals.format(product.updatedDate, 'dd/MM/yyyy HH:mm:ss')}"
+            ></td>
+            <td th:text="${product.deleteStatus}"></td>
+            <td>
+              <a
+                th:href="${'/admin/product/update?id=' + product.id}"
+                class="btn btn-primary"
+                >Edit</a
+              >
+              <button
+                type="button"
+                class="btn btn-danger"
+                th:onclick="productDelete(this.value)"
+                th:value="${product.id}"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <form action="/admin/product/add" method="post" id="form-add-product">
+        <h3>Add Product</h3>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="name">Name:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Nhập tên sản phẩm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="price">Price:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="number"
+                id="price"
+                name="price"
+                placeholder="Nhập giá sản phẩm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="amount">Amount:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="number"
+                id="amout"
+                name="amount"
+                placeholder="Nhập số lượng sản phẩm có trong kho"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="image">Image:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="image"
+                name="image"
+                placeholder="Nhập hình sản phẩm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="title">Title:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="title"
+                name="productDetail.title"
+                placeholder="Nhập tiêu đề sản phẩm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="description">Description:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="description"
+                name="productDetail.description"
+                placeholder="Nhập miêu tả sản phẩm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="material">Material:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="material"
+                name="productDetail.material"
+                placeholder="Nhập chất liệu sản phẩm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="origin">Origin:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="origin"
+                name="productDetail.origin"
+                placeholder="Nhập nơi xuất sứ của sản phẩm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="size">Size:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="size"
+                name="productDetail.size"
+                placeholder="Nhập kích thước sản phẩm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="color">Color:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="color"
+                name="productDetail.color"
+                placeholder="Nhập màu sắc sản phẩm"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="category">Category</label>
+            </div>
+            <div class="col-sm-11">
+              <select
+                name="category"
+                onchange="onChangeCategory(this.value)"
+                id="select-category"
+              >
+                <th:block th:each="category, index : ${categories}">
+                  <option
+                    th:if="${!category.deleteStatus}"
+                    th:text="${category.name}"
+                  ></option>
+                </th:block>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="sub-categories">Sub Category</label>
+            </div>
+            <div class="col-sm-11">
+              <select name="subCategory" id="wait-load-by-category">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+    </div>
+  </body>
+  <script
+    th:src="@{\js\admin\handlerViewProduct.js}"
+    th:inline="javascript"
+    layout:fragment="jsCode"
+  ></script>
+</html>

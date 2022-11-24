@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutAdmin.html}">
+
+ 
+<head>
+</head>
+
+<body>
+  <div style="margin: 50px" layout:fragment="content">
+    <div class="row">
+      <div class="col-9">
+        <h1 style="text-align: center;">Category Management</h1>
+      </div>
+      <div class="col-3"><a>Admin</a> <a href="logout">Log out</a></div>
+    </div>
+    <table class="table table-striped border" id="category-table">
+      <thead>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>name</td>
+          <td>CreatedDate</td>
+          <td>UpdatedDate</td>
+          <td>DeleteStatus</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <th:block th:if="${not #lists.isEmpty(categories)}">
+          <tr th:each="category , index : ${categories}" th:id="@{accordion{id}(id=${category.id})}">
+              <td><button class="btn btn-link" data-toggle="collapse" th:data-target="@{#collapse{id}(id=${category.id})}" aria-expanded="true"
+                  th:aria-controls="@{collapse{id}(id=${category.id})}">
+                  <i class="fa-solid fa-caret-down"></i>
+                </button>
+              </td>
+            <td th:text="${index.count}"></td>
+            <td th:text="${category.name}"></td>
+            <td th:text="${category.createdDate}"></td>
+            <td th:text="${category.updatedDate}"></td>
+            <td th:text="${category.deleteStatus}"></td>
+            <td>
+              <a th:href="${'/admin/category/update?id=' + category.id}" class="btn btn-primary">Edit</a>
+              <button type="button" class="btn btn-danger" th:onclick="categoryDelete(this.value)"
+                th:value="${category.id}">Delete</button>
+            </td>
+            <td>
+              <div th:id="@{collapse{id}(id=${category.id})}" class="collapse"  th:data-parent="@{#accordion{id}(id=${category.id})}">
+                <table>
+                  <thead>
+                    <tr>
+                      <td></td>
+                      <td>name</td>
+                      <td>CreatedDate</td>
+                      <td>UpdatedDate</td>
+                      <td>DeleteStatus</td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="subCategories , indexSub : ${category.list}" >
+                      <td th:text="${indexSub.count}"></td>
+                      <td th:text="${subCategories.name}"></td>
+                      <td th:text="${subCategories.createdDate}"></td>
+                      <td th:text="${subCategories.updatedDate}">sfddsf</td>
+                      <td th:text="${subCategories.deleteStatus}">sfddsf</td>
+                      <td>
+                        <a th:href="${'/admin/category/update?id=' + category.id}" class="btn btn-primary">Edit</a>
+                        <button type="button" class="btn btn-danger" th:onclick="categoryDelete(this.value)"
+                          th:value="${category.id}">Delete</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              </td>
+          </tr>
+        </th:block>
+      </tbody>
+    </table>
+    <form action="/admin/category/add" method="post">
+      <h3>Add Product</h3>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="name">Name:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="text" id="name" name="name">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="price">Price:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="number" id="price" name="price">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="amount">Amount:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="number" id="amout" name="amount">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="image">Image:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="text" id="image" name="image">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="title">Title:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="text" id="title" name="categoryDetail.title">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="description">Description:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="text" id="description" name="categoryDetail.description">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="material">Material:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="text" id="material" name="categoryDetail.material">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="origin">Origin:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="text" id="origin" name="categoryDetail.origin">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="size">Size:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="text" id="size" name="categoryDetail.size">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="color">Color:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="text" id="color" name="categoryDetail.color">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="sub-sub-categories">Sub Sub Categories</label>
+          </div>
+          <div class="col-sm-11">
+            <select name="subSubCategory" id="sub-sub-categories"></select>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Add</a>
+    </form>
+  </div>
+</body>
+<script th:src=@{/js/admin/handlerViewCategory.js} th:inline="javascript" layout:fragment="jsCode"></script>
+
+</html>

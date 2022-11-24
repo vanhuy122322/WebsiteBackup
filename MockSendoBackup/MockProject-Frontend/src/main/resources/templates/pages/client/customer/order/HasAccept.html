@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutClient.html}"
+>
+  <head> </head>
+
+  <body>
+    <div class="page mt-5 mb-4" layout:fragment="content">
+      <div class="container-profile mt-4">
+        <div class="row">
+          <div
+            class="col-sm-4"
+            th:replace="fragments/client/customer/LeftBar.html :: LeftBar"
+          ></div>
+          <div class="col-sm-8 right-user-profile">
+            <div class="title"><b>Quản lý đơn hàng</b></div>
+            <div class="filter">
+              <select
+                name=""
+                id=""
+                class="form-control"
+                style="width: 25%; margin-left: 80%"
+              >
+                <option value="">Trong 6 tháng</option>
+              </select>
+            </div>
+            <div
+              th:replace="fragments/client/customer/order/Navigation.html :: Navigation"
+            ></div>
+            <div
+              class="main"
+              style="margin-left: 10px"
+              th:each="order : ${orders}"
+            >
+              <div class="card-order" th:if="${order.status == 'Đã xác nhận'}">
+                <table class="mb-3">
+                  <thead>
+                    <tr>
+                      <th>
+                        <span
+                          >Mã đơn hàng:
+                          <a href="" class="btn" th:text="${order.checkoutCode}"
+                            >#21498214</a
+                          >
+                          |
+                          <a href="" class="btn">chi tiết</a>
+                        </span>
+                      </th>
+                      <th style="padding-left: 100px">Người nhận</th>
+                      <th style="padding-left: 100px">Tổng tiền</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        Đặt ngày:
+                        <span
+                          th:text="${#temporals.format(order.createdDate, 'dd/MM/yyyy HH:mm:ss')}"
+                        ></span>
+                      </td>
+                      <td style="padding-left: 100px">Lê Minh Tỏ</td>
+                      <td
+                        style="padding-left: 100px"
+                        th:text="${ #numbers.formatDecimal(order.totalCheckout, 0, 'POINT', 0, 'COMMA') + 'đ'}"
+                      ></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div>Shop: Kính mắt ....</div>
+                <div
+                  class="card-product"
+                  th:each="productInCart : ${order.productInCarts}"
+                >
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <img
+                        th:src="${productInCart.image}"
+                        alt="hình"
+                        style="width: 78px; height: 78px"
+                      />
+                    </div>
+                    <div class="col-sm-5">
+                      <div th:text="${productInCart.name}"></div>
+                      <div th:text="${'Size: '+productInCart.size}"></div>
+                      <div th:text="${'Color: '+productInCart.color}"></div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div
+                        th:text="${'Số lượng: '+productInCart.quantity}"
+                      ></div>
+                      <div
+                        th:text="${'Đơn giá : '+#numbers.formatDecimal(productInCart.price, 0, 'POINT', 0, 'COMMA') + 'đ'}"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cart-order-footer">
+                  <button
+                    class="btn btn-danger"
+                    style="margin-left: 70%"
+                    th:value="${order.checkoutCode}"
+                    onclick="cancelOrder(this.value)"
+                  >
+                    Hủy đơn hàng
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    th:src="@{/js/client/handlerOrder.js}"
+    th:inline="javascript"
+    layout:fragment="jsCode"
+  ></script>
+</html>

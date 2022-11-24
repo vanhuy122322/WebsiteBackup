@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutClient.html}"
+>
+  <head> </head>
+
+  <body>
+    <div class="page mt-5 mb-4" layout:fragment="content">
+      <div class="main">
+        <div class="row mb-3">
+          <div class="col-sm-2 mt-2">
+            <h5 style="padding-left: 50px; font-size: 18px">
+              <th:block th:if="${cart != null}">
+                <span
+                  th:if="${#lists.size(cart.productInCarts) != 0}"
+                  th:text="${'Giỏ hàng của bạn (' +  #lists.size(cart.productInCarts) + ')'}"
+                ></span>
+              </th:block>
+            </h5>
+          </div>
+        </div>
+        <th:block th:if="${cart != null}">
+          <form
+            th:if="${#lists.size(cart.productInCarts) != 0}"
+            action="/buy-now"
+            method="post"
+            style="padding-left: 20px"
+            onsubmit="return validateForm()"
+          >
+            <div class="row">
+              <div class="col-sm-8">
+                <div
+                  class="card-product-in-shop mb-3"
+                  style="padding-left: 50px"
+                  th:each="productInCart, index : ${cart.productInCarts}"
+                  th:id="${'delete-product-in-cart-' + index.index}"
+                >
+                  <h4 hidden>(Icon)Tên Shop</h4>
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <input
+                        type="checkbox"
+                        class="checkbox-to-buy"
+                        th:id="${'checkbox-total-update-' + index.index}"
+                        style="margin-top: 30px; margin-left: 30px"
+                        th:value="${index.index}"
+                        onclick="checkboxTotalUpdate(this.value)"
+                      />
+                      <input
+                        type="hidden"
+                        value="false"
+                        th:name="${'productInCarts['+index.index+'].chooseStatus'}"
+                        th:id="${'choose-status-value-'+index.index}"
+                      />
+                      <input
+                        type="text"
+                        hidden
+                        th:id="${'save-value-total-' + index.index}"
+                        th:value="${productInCart.quantity}"
+                      />
+                    </div>
+                    <div class="col-sm-2">
+                      <img
+                        th:src="${productInCart.image}"
+                        alt=""
+                        style="height: 80px; width: 80px"
+                      />
+                      <input
+                        type="hidden"
+                        th:value="${productInCart.image}"
+                        th:name="${'productInCarts['+index.index+'].image'}"
+                      />
+                    </div>
+                    <div class="col-sm-3">
+                      Tên: <span th:text="${productInCart.name}"></span> <br />
+                      <input
+                        type="hidden"
+                        th:value="${productInCart.name}"
+                        th:name="${'productInCarts['+index.index+'].name'}"
+                      />
+                      Màu sắc: <span th:text="${productInCart.color}"></span>
+                      <input
+                        type="hidden"
+                        th:value="${productInCart.color}"
+                        th:name="${'productInCarts['+index.index+'].color'}"
+                      />
+                      <br />
+                      Kích thước: <span th:text="${productInCart.size}"></span>
+                      <input
+                        type="hidden"
+                        th:value="${productInCart.size}"
+                        th:name="${'productInCarts['+index.index+'].size'}"
+                      />
+                    </div>
+                    <div class="col-sm-1">
+                      <span
+                        th:text="${ #numbers.formatDecimal(productInCart.price, 0, 'POINT', 0, 'COMMA') + 'đ'}"
+                      ></span>
+                      <input
+                        type="text"
+                        th:value="${productInCart.price}"
+                        th:id="${'price-'+index.index}"
+                        th:name="${'productInCarts['+index.index+'].price'}"
+                        hidden
+                      />
+                    </div>
+                    <div class="col-sm-2">
+                      <input
+                        type="number"
+                        th:name="${'productInCarts['+index.index+'].quantity'}"
+                        th:id="${'quantity-value-'+index.index}"
+                        style="width: 150px"
+                        th:value="${productInCart.quantity}"
+                        min="1"
+                        th:onchange="'updateTotal('+${index.index} +')'"
+                      />
+                    </div>
+                    <div class="col-sm-2">
+                      <button
+                        class="btn btn-danger"
+                        type="button"
+                        th:value="${index.index}"
+                        onclick="deleteProductInCart(this.value)"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="content">
+                  <div class="form-group">
+                    <h4>Tổng tiền</h4>
+                    <span>Tạm tính:</span>
+                    <span id="total-value">0đ</span>
+                    <input type="number" hidden id="total" name="total" />
+                  </div>
+                  <div class="form-group mt-3 mb-3" style="padding-right: 75px">
+                    <button
+                      class="btn"
+                      type="submit"
+                      style="background-color: red; color: white; width: 100%"
+                    >
+                      Mua ngay
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </th:block>
+
+        <th:block th:if="${cart != null}">
+          <th:block th:if="${#lists.size(cart.productInCarts) == 0}">
+            <div style="text-align: center; margin-bottom: 15%">
+              <img
+                src="https://media3.scdn.vn/img4/2021/02_02/JikA6AqzCC55LcNmcHjZ.png"
+                alt=""
+                style="width: 375px; height: 210px"
+              />
+              <br />
+              <b>Giỏ hàng cảm thấy trống trải</b>
+              <br />
+              <span>Ai đó ơi, mua sắm để nhận khuyến mãi từ Sendo ngay!</span>
+              <br />
+              <a href="/" class="btn btn-danger">Mua Sắm Ngay</a>
+            </div>
+          </th:block>
+        </th:block>
+
+        <th:block th:if="${cart == null}">
+          <th:block th:if="${#lists.size(cart.productInCarts) == 0}">
+            <div style="text-align: center; margin-bottom: 15%">
+              <img
+                src="https://media3.scdn.vn/img4/2021/02_02/JikA6AqzCC55LcNmcHjZ.png"
+                alt=""
+                style="width: 375px; height: 210px"
+              />
+              <br />
+              <b>Giỏ hàng cảm thấy trống trải</b>
+              <br />
+              <span>Ai đó ơi, mua sắm để nhận khuyến mãi từ Sendo ngay!</span>
+              <br />
+              <a href="/" class="btn btn-danger">Mua Sắm Ngay</a>
+            </div>
+          </th:block>
+        </th:block>
+      </div>
+    </div>
+  </body>
+  <script
+    th:src="@{/js/client/handlerCartPage.js}"
+    th:inline="javascript"
+    layout:fragment="jsCode"
+  ></script>
+</html>

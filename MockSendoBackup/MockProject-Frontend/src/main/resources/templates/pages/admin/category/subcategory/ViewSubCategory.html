@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutAdmin.html}"
+>
+  <head> </head>
+  <body>
+    <div style="margin: 50px" layout:fragment="content">
+      <div class="row">
+        <div class="col-9">
+          <h1 style="text-align: center">SubCategory Management</h1>
+        </div>
+      </div>
+      <table class="table table-striped border" id="category-table">
+        <thead>
+          <tr>
+             <td></td>
+            <td></td>
+            <td>name</td>
+            <td>slug</td>
+            <td>Image</td>
+            <td>CreatedDate</td>
+            <td>UpdatedDate</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="subCategory , index : ${category.subCategories}" th:if="${!subCategory.deleteStatus}" >
+          <th><input name="check_slug" id="check_slug"
+									th:value="${subCategory.slug}" type="text" hidden/>
+                <input name="check_id" id="check_id"
+									th:value="${category.id}" type="text" hidden/></th>
+            <td th:text="${index.count}"></td>
+            <td th:text="${subCategory.name}"></td>
+            <td th:text="${subCategory.slug}"></td>
+            <td><img th:src="${subCategory.image}" ></td>
+            <td
+              th:text="${#temporals.format(subCategory.createdDate, 'dd-MM-yyyy HH:mm:ss') }"
+            ></td>
+            <td
+              th:text="${#temporals.format(subCategory.UpdatedDate, 'dd-MM-yyyy HH:mm:ss') }"
+            ></td>
+            <td>
+              <button type="button" class="btn btn-danger" th:onclick="subCategoryDelete(this.value)"
+                th:value="${subCategory.slug}">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script th:src=@{/js/admin/handlerViewCategory.js} th:inline="javascript" layout:fragment="jsCode"></script>
+</html>

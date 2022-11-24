@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutClient.html}">
+<head>
+</head>
+
+<body>
+	<div class="page" layout:fragment="content">
+		<div class="container">
+			<div class="banner">
+				<a href="/"><img th:src=@{/img/banner.png} alt="" /></a>
+			</div>
+			<div
+				th:replace="/fragments/client/shop/Header.html :: Header"></div>
+			<div
+				th:replace="/fragments/client/shop/Navigation.html :: Navigation"></div>
+			<div class="content pt-3">
+				<div class="row border-bottom border-dark border-top border-dark">
+					<div class="ms-2 border-bottom border-dark">
+						<span>Hoạt động</span>
+					</div>
+					<div>
+						<span>Thời gian hoạt động</span><br /> <i
+							class="fa-solid fa-shop "></i> <span style="color: #828282;"
+							th:text="${daysale}"></span><span> ngày</span><br /> <span>Sản
+							phẩm</span><br /> <i class="fa-solid fa-box "></i><span
+							style="color: #828282;" th:text="${amountproduct}"></span>
+					</div>
+				</div>
+				<div
+					class="row mb-2 mt-5 border-bottom border-dark border-top border-dark">
+					<div class="ms-2 border-bottom border-dark">
+						<span>Thông tin shop</span>
+					</div>
+					<div>
+						<span>Địa chỉ</span><br /> <span style="color: #828282;"
+							th:text="${shop.shopDetail.location}"></span><br /> <span>Điện
+							thoại</span><br /> <span style="color: #828282;"
+							th:text="${shop.shopDetail.phone}"></span><br /> <span>Email</span><br />
+						<span style="color: #828282;" th:text="${shop.shopDetail.email}"></span><br />
+						<span>Website</span><br /> <span style="color: #828282;">https://www.sendo.vn/shop/
+						</span><span style="color: #828282;" th:text="${shop.name}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

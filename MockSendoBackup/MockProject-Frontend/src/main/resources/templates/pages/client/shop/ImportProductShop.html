@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutClient.html}">
+<head>
+</head>
+
+<body>
+	<div class="page" layout:fragment="content">
+		<div class="container">
+			<div class="banner">
+				<a href="/"><img th:src=@{/img/banner.png} alt="" /></a>
+			</div>
+			<div th:replace="/fragments/client/shop/Header.html :: Header"></div>
+			<div
+				th:replace="/fragments/client/shop/Navigation.html :: Navigation"></div>
+			<div class="content">
+				<div class="form-body">
+				<form class="mt-2 ml-1 mr-1" method="post" action="/shop/product-file"
+					enctype="multipart/form-data">
+					<div class="form-group">
+						<div class=" ml-2 mr-2 add-file border border-dark">
+							<label for="file" class="text-file">Please upload a file</label>
+							<input type="file" name="file"
+								class="fullwidth input rqd text-file" /> <br />
+							<button type="submit" class="btn border">Add </button>
+						</div>
+					</div>
+				</form>
+			</div>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/js/client/handlerShop.js}" th:inline="javascript"
+	layout:fragment="jsCode"></script>
+</body>
+
+</html>

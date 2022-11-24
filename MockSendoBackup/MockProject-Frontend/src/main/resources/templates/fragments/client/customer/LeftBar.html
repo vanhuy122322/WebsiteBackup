@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head> </head>
+
+  <body>
+    <div class="col-sm-4 left-user-profile" th:fragment="LeftBar">
+      <div class="left-navba">
+        <div class="left-user-info">
+          <img
+            src="data:image/gif;base64,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"
+          />
+          <div>
+            <p th:text="${user != null ? user.fullName : 'Chưa đăng nhập'}"></p>
+          </div>
+        </div>
+        <div class="left-user-content">
+          <div class="left-user-manage-content">
+            <div class="content-title">
+              <strong>Quản lý giao dịch</strong>
+            </div>
+            <div class="panelContent">
+              <ul class="panelFirst">
+                <li class="nav_3Oez">
+                  <a href="/customer/order/wait-accept"
+                    ><i class="fa-sharp fa-solid fa-book"></i>Đơn hàng</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="left-user-manage-content" style="margin-bottom: 350px">
+            <div class="content-title">
+              <strong>Quản lý tài khoản</strong>
+            </div>
+            <div class="panelContent">
+              <ul class="panelFirst">
+                <li class="nav_3Oez">
+                  <a href="/customer"
+                    ><i class="fa-solid fa-pen-to-square"></i>Thông tin tài
+                    khoản</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

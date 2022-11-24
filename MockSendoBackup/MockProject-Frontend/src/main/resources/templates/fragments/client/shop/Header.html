@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<body>
+	<div class="header border-bottom border-dark" th:fragment="Header">
+		<div class="row " style="width: 100%;">
+			<div class="col-sm-4 mb-2">
+				<div class="row">
+					<div class="col-sm-4">
+						<img th:src="${shop.shopDetail.image}" alt=""
+							style="border-radius: 100%; border: 1px solid black; width: 100px; height: 100px;" />
+					</div>
+					<div class="col-sm-8"><input th:value="${shop.name}" id="shopName" hidden>
+						<b th:text="${shop.name}"></b><br /> <span>Kho hàng: </span><b
+							th:text="${shop.shopDetail.storeHouse}"></b>
+					</div>
+				</div>
+			</div>
+			<div class="border-start border-dark col-sm-8">
+				<div class="row" style="text-align: center; margin-top: 30px;">
+					<div class="col-sm-4 ">
+						<i class="fa-solid fa-shop text-primary"></i><span
+							class="text-primary" th:text="${daysale}"></span><span
+							class="text-primary"> ngày</span><br /> <span>Bán hàng
+							trên Sendo</span>
+					</div>
+					<div class="col-sm-4 border-start border-dark">
+						<i class="fa-solid fa-box text-primary"></i><span
+							class="text-primary" th:text="${amountproduct}"></span><br /> <span>Sản
+							phẩm</span>
+					</div>
+					<div class="col-sm-4 border-start border-dark border-end ">
+						<span class="text-primary"><i class="fa-regular fa-clock"></i>9
+							giờ</span><br /> <span>Thời gian chuẩn bị hàng</span>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

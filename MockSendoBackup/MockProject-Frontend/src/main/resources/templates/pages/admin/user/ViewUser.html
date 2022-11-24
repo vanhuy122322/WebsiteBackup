@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutAdmin.html}"
+>
+  <head> </head>
+
+  <body>
+    <div style="margin: 50px" layout:fragment="content">
+      <div class="row">
+        <div class="col-9">
+          <h1 style="text-align: center">User Management</h1>
+        </div>
+      </div>
+      <table class="table table-striped border" id="user-table">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Acount</td>
+            <td>Email</td>
+            <td>Gender</td>
+            <td>CreatedDate</td>
+            <td>UpdatedDate</td>
+            <td>Role</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="user : ${users}" th:unless="${user.deleteStatus}">
+            <td th:text="${user.fullName}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.gender}"></td>
+            <td
+              th:text="${#temporals.format(user.createdDate, 'dd/MM/yyyy')}"
+            ></td>
+            <td
+              th:text="${#temporals.format(user.updatedDate, 'dd/MM/yyyy')}"
+            ></td>
+            <td th:text="${user.roleNames}"></td>
+            <td>
+              <a
+                th:href="${'/admin/user/update?id=' + user.id}"
+                class="btn btn-primary"
+                >Edit</a
+              >
+              <button
+                type="button"
+                class="btn btn-danger"
+                th:onclick="userDelete(this.value)"
+                th:value="${user.id}"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script
+    th:src="@{/js/admin/user/handlerViewUser.js}"
+    th:inline="javascript"
+    layout:fragment="jsCode"
+  ></script>
+</html>

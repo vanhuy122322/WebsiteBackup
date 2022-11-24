@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutClient.html}"
+>
+  <head>
+    <link rel="stylesheet" th:href=@{/css/productdetail.css}>
+  </head>
+
+  <body>
+    <div class="root" style="height: 100%" layout:fragment="content">
+      <div class="page" style="height: 100%">
+        <main id="main" style="height: 100%">
+          <div
+            class="d7e-d4ddb0 e9f-ee0b0c d7e-7d0d8f"
+            style="background-color: #f2f3f4; height: 100%"
+          >
+            <div class="d7e-d4ddb0 d7e-a90f22 d7e-57f266" style="height: 100%">
+              <div class="col-sm-5 image-first" style="background-color: #fff">
+                <div class="image-task">
+                  <div class="slider">
+                    <div class="slide active">
+                      <img th:src="${product.image}" alt="" />
+                      <div class="info">
+                        <div class="info-left"><span>1/5</span></div>
+                        <div class="info-right">
+                          <button
+                            aria-label="share-facebook"
+                            class="d7e-aa34b6 d7e-1b9468 d7e-13f811 d7e-6eb095 d7e-d8b43f icon-share"
+                            style="margin-right: 0.8rem"
+                          >
+                            <svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                              version="1.1"
+                              xmlns:xlink="http://www.w3.org/1999/xlink"
+                              class="d7e-0f24ac d7e-72271e"
+                            >
+                              <path
+                                d="M18 2a4 4 0 11-3.017 6.626l-5.07 2.536a4.016 4.016 0 010 1.676l5.07 2.536a4 4 0 11-.895 1.789l-5.07-2.537a4 4 0 110-5.253l5.07-2.535A4 4 0 0118 2zm0 14a2 2 0 100 4 2 2 0 000-4zM6 10a2 2 0 100 4 2 2 0 000-4zm12-6a2 2 0 100 4 2 2 0 000-4z"
+                                fill="#6F787E"
+                                fill-rule="nonzero"
+                              ></path>
+                            </svg></button
+                          ><button
+                            ml="2"
+                            aria-label="like-product"
+                            class="d7e-aa34b6 d7e-1b9468 d7e-13f811 d7e-6eb095 d7e-43a364 d7e-d8b43f icon-share"
+                          >
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                              version="1.1"
+                              xmlns:xlink="http://www.w3.org/1999/xlink"
+                              class="d7e-0f24ac undefined"
+                            >
+                              <path
+                                d="M16.553 2C20.258 2.015 23 5.14 23 9.12c0 3.038-1.694 5.972-4.849 8.81-1.656 1.49-3.77 2.963-5.285 3.747l-.866.45-.866-.45c-1.515-.784-3.63-2.258-5.285-3.747C2.694 15.092 1 12.158 1 9.12 1 5.097 3.716 2 7.455 2c1.395 0 2.376.189 3.467.728a6.3 6.3 0 011.068.668 6.17 6.17 0 011.113-.7c1.07-.524 2.003-.696 3.45-.696zm-.004 2c-1.162 0-1.803.118-2.567.492-.47.23-.887.541-1.25.936l-.73.79-.735-.784a4.266 4.266 0 00-1.232-.913C9.248 4.13 8.565 4 7.455 4 4.884 4 3 6.148 3 9.12c0 2.38 1.414 4.83 4.186 7.323 1.512 1.36 3.455 2.718 4.814 3.43 1.359-.712 3.302-2.07 4.814-3.43C19.586 13.949 21 11.5 21 9.12c0-2.931-1.912-5.11-4.45-5.12z"
+                                fill="#6F787E"
+                                fill-rule="nonzero"
+                              ></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="navigationbutton">
+                      <em class="fas fa-chevron-left prev-btn"></em>
+                      <em class="fas fa-chevron-right next-btn"></em>
+                    </div>
+                  </div>
+                </div>
+                <div class="d7e-bd2111 d7e-85058f _405-45fc10" py="4">
+                  <div class="_405-07ee36">
+                    <div class="_405-8c6e74">
+                      <div
+                        class="swiper-container swiper-container-virtual swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events"
+                      >
+                        <div
+                          class="swiper-wrapper"
+                          style="
+                            transition-duration: 0ms;
+                            transform: translate3d(8px, 0px, 0px);
+                          "
+                        >
+                          <div
+                            class="swiper-slide _405-183b04 swiper-slide-active"
+                            data-swiper-slide-index="0"
+                            style="
+                              left: 0px;
+                              width: 72.1587px;
+                              margin-right: 8px;
+                            "
+                          >
+                            <div
+                              class="d7e-efad30 _405-4e3952 _405-1ab8e8 d7e-25094e"
+                            >
+                              <div class="d7e-9582e2">
+                                <img
+                                  heigh="100%"
+                                  th:src="${product.image}"
+                                  alt=""
+                                  class=""
+                                />
+                              </div>
+                              <div class="_405-b28e68"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-7" style="background-color: #fff">
+                <div class="view-detail-product">
+                  <div class="product-title">
+                    <img
+                      src="https://media3.scdn.vn/img4/2020/07_30/h6fJaiL5WkEbDU2eQRZb.png"
+                      alt="Shop's badge"
+                      class="image-shop"
+                    />
+                    <span th:text="${product.name}"></span>
+                  </div>
+                  <div class="product-price">
+                    <span
+                      class="d7e-87b451 d7e-fb1c84 d7e-a4f628"
+                      th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA') + 'đ'}"
+                    ></span>
+                    <input
+                      type="text"
+                      th:value="${product.name}"
+                      id="product-name"
+                      hidden
+                    />
+                    <input
+                      type="number"
+                      th:value="${product.price}"
+                      id="price"
+                      hidden
+                    />
+                    <input
+                      type="text"
+                      th:value="${product.image}"
+                      id="image"
+                      hidden
+                    />
+                  </div>
+                  <hr class="d7e-5d67fd d7e-ad15a4" />
+                  <div class="select-product">
+                    <div class="_3141-c11e4d d7e-a90f22 d7e-57f266 d7e-2243f4">
+                      <div
+                        class="d7e-a90f22 d7e-f7453d d7e-57f266 d7e-cd67ae d7e-a242f4 d7e-3c822f"
+                      >
+                        <div
+                          class="d7e-f7453d d7e-57f266 d7e-a20916 d7e-189b23"
+                          style="margin-bottom: 0.8rem; margin-right: 0.8rem"
+                        >
+                          <span class="d7e-d87aa1 d7e-b61d5e d7e-a58302"
+                            >Màu sắc:</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <span
+                      ><select name="" id="color" class="form-control">
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="white">White</option>
+                      </select></span
+                    >
+                    <input
+                      type="hidden"
+                      th:value="${shop.name}"
+                      name="shopName"
+                    />
+                  </div>
+                  <div class="select-product">
+                    <div class="_3141-c11e4d d7e-a90f22 d7e-57f266 d7e-2243f4">
+                      <div
+                        class="d7e-a90f22 d7e-f7453d d7e-57f266 d7e-cd67ae d7e-a242f4 d7e-3c822f"
+                      >
+                        <div
+                          class="d7e-f7453d d7e-57f266 d7e-a20916 d7e-189b23"
+                          style="margin-bottom: 0.8rem; margin-right: 0.8rem"
+                        >
+                          <span class="d7e-d87aa1 d7e-b61d5e d7e-a58302"
+                            >Kích thước:</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <span
+                      ><select name="" id="size" class="form-control">
+                        <option value="Size XL">Size XL</option>
+                        <option value="Size L">Size L</option>
+                        <option value="Size M">Size M</option>
+                      </select></span
+                    >
+                  </div>
+                  <div class="select-product">
+                    <div class="_3141-c11e4d d7e-a90f22 d7e-57f266 d7e-2243f4">
+                      <div
+                        class="d7e-a90f22 d7e-f7453d d7e-57f266 d7e-cd67ae d7e-a242f4 d7e-3c822f"
+                      >
+                        <div
+                          class="d7e-f7453d d7e-57f266 d7e-a20916 d7e-189b23"
+                          style="margin-bottom: 0.8rem; margin-right: 0.8rem"
+                        >
+                          <span class="d7e-d87aa1 d7e-b61d5e d7e-a58302"
+                            >Số lượng:</span
+                          >
+                        </div>
+                        <div
+                          class="_3141-cf94c4 d7e-f7453d d7e-57f266 d7e-a20916 d7e-189b23"
+                        ></div>
+                      </div>
+                    </div>
+                    <div
+                      class="d7e-a90f22 d7e-f7453d d7e-57f266 d7e-f6de6c d7e-2243f4 d7e-cd67ae d7e-28191f d7e-97824e"
+                    >
+                      <div class="d7e-f7453d d7e-57f266 d7e-a20916">
+                        <input
+                          type="number"
+                          min="1"
+                          id="quantity"
+                          value="1"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row cart-shopping">
+                    <div class="col-md-6">
+                      <button
+                        class="add-cart"
+                        onclick="addToCart()"
+                        type="button"
+                      >
+                        <span>Thêm vào giỏ</span>
+                      </button>
+                    </div>
+                    <div class="col-md-6">
+                      <button class="add-buy" onclick="buyNow()" type="button">
+                        <span>Mua ngay</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="d7e-d4ddb0 d7e-a90f22 d7e-57f266 pt-4"
+              style="height: 100%"
+            >
+              <div class="info-shop">
+                <div class="detail-shop">
+                  <div class="name-shop">
+                    <a
+                      aria-label="shop"
+                      class="image-shop"
+                      href="shop/moon_mode"
+                      style="display: flex"
+                    >
+                      <div
+                        class="d7e-361e87"
+                        style="width: 74px; height: fit-content"
+                      >
+                        <div class="d7e-9582e2">
+                          <img
+                            th:src="${shop.shopDetail.image}"
+                            alt="shop-avatar"
+                            class="image-shoper undefined"
+                            style="
+                              width: 60 px;
+                              height: 60px;
+                              border-radius: 20px;
+                            "
+                          />
+                        </div>
+                      </div>
+                      <div class="d7e-efad30 e7b-e946ae d7e-361e87"></div>
+                    </a>
+                    <div class="ml-3">
+                      <a
+                        aria-label="shop-name"
+                        class="text-dark btn"
+                        href="shop/moon_mode"
+                      >
+                        <span
+                          class="d7e-ed528f d7e-fde242 d7e-266ced d7e-fb1c84 undefined"
+                          th:text="${shop.name}"
+                          style="text-align: center"
+                        ></span
+                      ></a>
+                      <br />
+                      <img
+                        src="https://media3.scdn.vn/img4/2020/07_30/h6fJaiL5WkEbDU2eQRZb.png"
+                        alt="shop_plus"
+                        class="e7b-350112"
+                      />
+                      <span
+                        class="d7e-ed528f pb-2 d7e-fde242 d7e-7ef9b0 d7e-b61d5e d7e-a58302"
+                        th:text="${shop.shopDetail.location}"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="year-shop-sell">
+                    <div
+                      class="e7b-fe9043 d7e-57f266 d7e-6f98d6 d7e-f2127a d7e-2243f4"
+                    >
+                      <span
+                        class="e7b-b09902 d7e-ed528f d7e-fde242 d7e-266ced d7e-fb1c84 undefined"
+                        >8 năm</span
+                      ><span
+                        class="e7b-f85974 d7e-ed528f d7e-fde242 d7e-7ef9b0 d7e-b61d5e undefined"
+                        >Bán ở Sendo</span
+                      >
+                    </div>
+                    <div
+                      class="e7b-fe9043 ml-2 d7e-57f266 d7e-6f98d6 d7e-f2127a d7e-2243f4 text-center"
+                    >
+                      <span
+                        class="e7b-b09902 d7e-ed528f d7e-fde242 d7e-266ced d7e-fb1c84 undefined text-center ml-4"
+                        >7 </span
+                      ><span
+                        class="e7b-f85974 d7e-ed528f d7e-fde242 d7e-7ef9b0 d7e-b61d5e undefined"
+                        >Sản phẩm</span
+                      >
+                    </div>
+                    <div
+                      class="e7b-fe9043 ml-2 d7e-57f266 d7e-6f98d6 d7e-f2127a d7e-2243f4"
+                    >
+                      <span
+                        class="e7b-b09902 d7e-ed528f d7e-fde242 d7e-266ced d7e-fb1c84 undefined"
+                        >1 ngày</span
+                      ><span
+                        class="e7b-f85974 d7e-ed528f d7e-fde242 d7e-7ef9b0 d7e-b61d5e undefined"
+                        >Chuẩn bị hàng</span
+                      >
+                    </div>
+                    <div
+                      class="e7b-fe9043 ml-2 d7e-57f266 d7e-6f98d6 d7e-f2127a d7e-2243f4"
+                    >
+                      <span
+                        class="e7b-b09902 d7e-ed528f d7e-fde242 d7e-266ced d7e-fb1c84 undefined ml-2"
+                        >--</span
+                      ><span
+                        class="e7b-f85974 d7e-ed528f d7e-fde242 d7e-7ef9b0 d7e-b61d5e undefined"
+                        >Tỉ lệ phản hồi</span
+                      >
+                    </div>
+                    <div
+                      class="e7b-fe9043 ml-2 d7e-57f266 d7e-6f98d6 d7e-f2127a d7e-2243f4"
+                    >
+                      <span
+                        class="e7b-b09902 d7e-ed528f d7e-fde242 d7e-266ced d7e-fb1c84 undefined ml-2"
+                        >--</span
+                      ><span
+                        class="e7b-f85974 d7e-ed528f d7e-fde242 d7e-7ef9b0 d7e-b61d5e undefined"
+                        >Shop phản hồi</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ml-5 infor-shop">
+                <div class="infor-shop1">
+                  <b>Mô tả sản phẩm</b>
+                  <div>
+                    <span></span>
+                  </div>
+                  <div>
+                    <b>Thông tin cơ bản</b>
+                    <table class="table table-striped">
+                      <tbody>
+                        <tr>
+                          <th>Chiều dài</th>
+                          <td th:text="${product.productDetail.size}"></td>
+                        </tr>
+                        <tr>
+                          <th>Chất liệu</th>
+                          <td th:text="${product.productDetail.material}"></td>
+                        </tr>
+                        <tr>
+                          <th>Xuất sứ</th>
+                          <td th:text="${product.productDetail.origin}"></td>
+                        </tr>
+                        <tr>
+                          <th>Màu sắc</th>
+                          <td th:text="${product.productDetail.color}"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <span class="more-content" style="display: block">
+                    <b>Chi tiết sản phẩm</b>
+                    <h3
+                      class="mt-5"
+                      th:text="${product.productDetail.title}"
+                    ></h3>
+                    <span th:text="${product.productDetail.description}"></span>
+                  </span>
+                  <!-- <button class="read-more mb-5">Xem thêm</button> -->
+                </div>
+                <div class="infor-shop1 mt-5">
+                  <b>Đánh giá sản phẩm</b>
+                  <div class="star-shop mt-3" style="display: flex">
+                    <div class="col">
+                      <div style="display: flex">
+                        <h2>4.6</h2>
+                        <span style="font-size: 24px; line-height: 3.2rem"
+                          >/</span
+                        >
+                        <span
+                          class="text-danger"
+                          style="font-size: 24px; line-height: 3.2rem"
+                          >5</span
+                        >
+                        <div class="start-vote ml-2" style="line-height: 3rem">
+                          <div class="d7e-4e4dcb d7e-debaab">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="_39a-8b8429">
+                        Đây là thông tin người mua đánh giá shop bán sản phẩm
+                        này có đúng mô tả không.
+                      </p>
+                    </div>
+                    <div class="col">
+                      <div style="display: flex">
+                        <div class="start-vote">
+                          <div class="d7e-4e4dcb d7e-debaab">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                          </div>
+                        </div>
+                        <span class="_39a-73b311"
+                          ><span
+                            class="_39a-2c5d2e _39a-d72039"
+                            style="width: 86%"
+                          ></span
+                        ></span>
+                        <strong class="_39a-17359b">18</strong>
+                      </div>
+                      <div style="display: flex">
+                        <div class="start-vote">
+                          <div class="d7e-4e4dcb d7e-debaab">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                          </div>
+                        </div>
+                        <span class="_39a-73b311"
+                          ><span
+                            class="_39a-2c5d2e _39a-0af36d"
+                            style="width: 0%"
+                          ></span
+                        ></span>
+                        <strong class="_39a-17359b">0</strong>
+                      </div>
+                      <div style="display: flex">
+                        <div class="start-vote">
+                          <div class="d7e-4e4dcb d7e-debaab">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                          </div>
+                        </div>
+                        <span class="_39a-73b311"
+                          ><span
+                            class="_39a-2c5d2e _39a-0af36d"
+                            style="width: 0%"
+                          ></span
+                        ></span>
+                        <strong class="_39a-17359b">0</strong>
+                      </div>
+                      <div style="display: flex">
+                        <div class="start-vote">
+                          <div class="d7e-4e4dcb d7e-debaab">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                          </div>
+                        </div>
+                        <span class="_39a-73b311"
+                          ><span
+                            class="_39a-2c5d2e _39a-0af36d"
+                            style="width: 0%"
+                          ></span
+                        ></span>
+                        <strong class="_39a-17359b">0</strong>
+                      </div>
+                      <div style="display: flex">
+                        <div class="start-vote">
+                          <div class="d7e-4e4dcb d7e-debaab">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                          </div>
+                        </div>
+                        <span class="_39a-73b311"
+                          ><span
+                            class="_39a-2c5d2e _39a-0af36d"
+                            style="width: 0%"
+                          ></span
+                        ></span>
+                        <strong class="_39a-17359b">0</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="comment-star mt-3">
+                    <button class="comment-action">Tất cả</button>
+                    <button>5 sao</button>
+                    <button>4 sao</button>
+                    <button>3 sao</button>
+                    <button>2 sao</button>
+                    <button>1 sao</button>
+                    <button>Đánh giá có hình</button>
+                  </div>
+                  <div class="mt-3">
+                    <div>
+                      <div class="_39a-71cc39" style="display: flex">
+                        <div class="_39a-60cf96">
+                          <img
+                            src="https://media3.scdn.vn/img4/2021/01_11/zkLs5U9BuMYax19rViNJ.jpg"
+                            alt="Hồng Châu"
+                            class=""
+                          />
+                        </div>
+                        <div class="_39a-4faf0d">
+                          <div class="_39a-437c77" style="display: flex">
+                            <div class="_39a-b56df5">
+                              <strong class="_39a-9edced">Hồng Châu</strong
+                              ><time>10:55 | 24/12/2020</time>
+                            </div>
+                            <div>
+                              <div class="d7e-7f502f d7e-7dd432">
+                                <div class="d7e-4e4dcb d7e-271a22"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="_39a-edb9d0">
+                            <p>
+                              Chuyên nghiệp, thân thiện. Đẹp như mô tả. Đóng gói
+                              kỹ lưỡng. Chất lượng tuyệt vời. Giao hàng nhanh
+                              bất ngờ. Sản phẩm ok. Cám ơn shop.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="_39a-9d39e1">
+                        <div class="_39a-11288a">
+                          <div class="_39a-c4ce3d">
+                            <span class="choose-label">Free size</span>
+                          </div>
+                          <div class="_39a-c4ce3d">
+                            <span class="choose-label">Váy hoa</span>
+                          </div>
+                        </div>
+                        <div class="_39a-c476e3">
+                          <div class="_39a-e09719">
+                            <img
+                              src="http://media3.scdn.vn/img4/2020/12_24/FwXOAv7epdH0S0jzLHxT.jpg"
+                              alt="customer-feedback"
+                              class=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="_39a-1ce185">
+                        <button class="d7e-aa34b6 _39a-631445">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            version="1.1"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            class="d7e-0f24ac"
+                          >
+                            <path
+                              d="M13 2c.615 0 1.142.045 1.748.222C16.092 2.612 17 3.527 17 4.999c0 .52-.092 1.075-.262 1.69-.112.407-.25.819-.44 1.329l-.343.905-.028.076H19c1.87 0 3 1.318 3 3 0 5.944-1.245 10-4 10h-6.966a6.741 6.741 0 01-2.37-.382 4.884 4.884 0 01-1.012-.492A1.992 1.992 0 016 22H4a2 2 0 01-2-2v-9a2 2 0 012-2h2a2 2 0 01.57.083c1.072-1.562 4.685-5.508 5.65-6.71l.3-.374H13zm.46 2.014c-1.546 1.848-5.053 5.687-5.318 6.305a1.66 1.66 0 00-.142.669v7.036l.006.15c.056.795.505 1.265 1.33 1.56a4.81 4.81 0 001.627.266H18c1.015 0 2-3.21 2-8 0-.641-.309-1-1-1h-4c-1.195 0-1.444-.925-1.195-1.925.058-.235.144-.494.274-.845.057-.154.29-.765.344-.91.171-.46.293-.821.387-1.162.126-.457.19-.842.19-1.159 0-.45-.238-.69-.81-.857a3.501 3.501 0 00-.73-.128zM6 11H4v9h2v-9z"
+                              fill="#6F787E"
+                              fill-rule="nonzero"
+                            ></path></svg
+                          ><span style="font-size: 15px; margin-bottom: 10px"
+                            >Hữu ích
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+  <script
+    th:src="@{/js/client/handlerProductDetail.js}"
+    th:inline="javascript"
+    layout:fragment="jsCode"
+  ></script>
+</html>

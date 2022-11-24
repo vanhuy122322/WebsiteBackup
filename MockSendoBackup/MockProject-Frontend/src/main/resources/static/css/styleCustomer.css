@@ -1,0 +1,150 @@
+.page-profile {
+  width: 100%;
+  background-color: #f3f1f2;
+  height: 2.5rem;
+}
+
+.container-profile {
+  max-width: 1360px;
+  width: 100%;
+  padding-right: 0.4rem;
+  padding-left: 0.4rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.user-profile span {
+  display: inline-block;
+  font-size: 1rem;
+  color: #000;
+  margin-top: 0.3rem;
+  padding: 0;
+}
+
+.left-user-info {
+  display: flex;
+  align-items: stretch;
+  padding-bottom: 1.2rem;
+}
+
+.left-user-info img {
+  border-radius: 100%;
+  border: 1px solid #e7e7e7;
+  width: 3rem;
+  height: 3rem;
+  padding: 0.3rem;
+}
+
+.left-user-info div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 0.3rem;
+  flex: 1 1 auto;
+}
+
+.left-user-info div p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.companyContainer {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  overflow: hidden;
+  padding-left: 0 !important;
+  padding-right: 12px;
+}
+
+.iconVerify {
+  height: 25px !important;
+  width: 25px !important;
+  margin-left: 2px;
+  border: none !important;
+}
+
+.left-user-info div a {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.left-user-manage-content {
+  padding-bottom: 0.5rem;
+}
+
+.left-user-manage-content .content-title {
+  border-left: 3px solid #e5101d;
+  font-weight: 500;
+  font-size: 1rem;
+  background: #f5f5f5;
+  padding: 0.4rem 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.left-user-manage-content .panelContent .nav_3Oez > a {
+  display: block;
+  position: relative;
+  color: #666;
+  height: 32px;
+  line-height: 32px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.user-top-title {
+  position: relative;
+  width: 100%;
+  height: 3.2rem;
+  line-height: 32px;
+  border-bottom: 1px solid #ededed;
+  width: 100%;
+}
+
+.user-top-title h4 {
+  padding-right: 0.6rem;
+  font-size: 1.6rem;
+  color: #000;
+  padding-top: 0.3rem;
+}
+
+.avatar_3KH_ > div {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar_3KH_ > div {
+  width: 6.2rem;
+  height: 6.2rem;
+  border: 1px solid #5e6d81;
+  border-radius: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  align-items: center;
+}
+
+.avatar_3KH_ img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.avatar_3KH_ button {
+  display: block;
+  background: rgba(0, 0, 0, 0.54);
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  font-size: 1.1rem;
+  width: 100%;
+  text-align: center;
+  height: 2.3rem;
+  line-height: 2.3rem;
+}
+
+.input-infor input {
+  width: 70%;
+}

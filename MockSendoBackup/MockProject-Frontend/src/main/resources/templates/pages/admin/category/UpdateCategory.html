@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{LayoutAdmin.html}">
+<head>
+</head>
+
+<body>
+	<div style="margin: 50px" layout:fragment="content">
+		<div class="row">
+			<a href="/admin/category">Category Management</a>
+			<div class="col-9">
+				<h3>Category Management</h3>
+			</div>
+			<div class="col-3">
+				<a>Admin</a> <a href="logout">Log out</a>
+			</div>
+		</div>
+		<form action="/admin/category/update" method="post"
+			enctype="multipart/form-data" th:object="${categoryDTO}">
+			<div class="form-group">
+				<input type="text" id="id" name="id"
+					th:value="${category != null ? category.id : ''}" hidden />
+			</div>
+			<div class="form-group">
+				<label for="name">Name</label> <input type="text" id="name"
+					name="name" th:value="${category != null ? category.name : ''}" />
+			</div>
+			<div class="form-group">
+				<input type="datetime" id="created-date" name="createdDate"
+					th:value="${#temporals.format(category.createdDate, 'yyyy-MM-dd HH:mm:ss')}"
+					hidden />
+			</div>
+			<div class="form-group">
+				<input type="datetime" id="updated-date" name="updatedDate"
+					th:value="${#temporals.format(category.updatedDate, 'yyyy-MM-dd HH:mm:ss')}"
+					hidden />
+			</div>
+			<div class="form-group">
+				<input type="datetime" id="created-date" name="slug"
+					th:value="${category.slug}" hidden />
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-1">
+						<label for="sub-sub-categories">Sub Categories</label>
+					</div>
+					<div class="col-sm-11">
+						<button type="button" class="text-success btn-add-sub-category"
+							style="border: none; background-color: white; height: 50px; width: 50px;">
+							<i class="fa-solid fa-circle-plus" style="font-size: 20px"></i>
+						</button>
+						<div id="sub-category-add">
+							<div class="form-group" id="length-sub-category"
+								th:each="subCategory , indexSub : ${category.subCategories}"
+								th:if="!${subCategory.deleteStatus}">
+								<div class="row">
+									<div class="ms-3">
+									<label for="name">SubCategory:</label>
+										<div class="col-sm-1">
+											<label for="name">SubCategory Name:</label>
+										</div>
+										<div class="col-sm-11 pl-5">
+											<input type="text" id="id"
+												th:name="|subCategories[${indexSub.index}].id|"
+												th:value="${subCategory.id}" hidden /> <input type="text"
+												id="name" th:name="|subCategories[${indexSub.index}].slug|"
+												th:value="${subCategory.slug}" hidden /> <input type="text"
+												id="name"
+												th:name="|subCategories[${indexSub.index}].createdDate|"
+												th:value="${#temporals.format(subCategory.createdDate, 'yyyy-MM-dd HH:mm:ss')}"
+												hidden /> <input type="text" id="name" 
+												th:name="|subCategories[${indexSub.index}].name|"
+												th:value="${subCategory.name}" />
+										</div>
+										<div class="col-sm-1">
+											<label for="name">SubCategory Image:</label>
+										</div>
+										<div class="col-sm-11 pl-5">
+											<input type="text" id="name"
+												th:name="|subCategories[${indexSub.index}].image|"
+												th:value="${subCategory.image}" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Update</button>
+		</form>
+	</div>
+</body>
+<script th:src=@{/js/admin/handlerViewCategory.js}
+	th:inline="javascript" layout:fragment="jsCode"></script>
+</html>

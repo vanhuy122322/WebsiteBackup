@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<body>
+	<div class="navigation border-bottom border-dark mb-4 mt-2 pb-2" th:fragment="Navigation">
+		<a class="btn border" th:href="${'/shop/' + shop.name}">Trang chủ
+			shop</a> <a class="btn border"
+			th:href="${'/shop/infomation/' + shop.name}">Thông tin shop</a> <a
+			class="btn border" th:href="${'/shop/product/' + shop.name}">Danh
+			sách sản phẩm</a> <a class="btn border"
+			th:href="${'/shop/checkout/' + shop.name}">Danh sách đơn hàng</a> <a
+			class="btn border" th:href="${'/shop/product/add/' + shop.name}">Tạo
+			sản phẩm</a>
+			<a
+			class="btn border" th:href="${'/shop/product-file/'+ shop.name }">Import to Excel</a>
+	</div>
+</body>
+</html>

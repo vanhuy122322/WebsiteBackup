@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<link rel="stylesheet" type="text/css"
+	href="https://pwa-web.scdn.vn/static/css/29dd5419d3829176348c.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css" />
+<link rel="stylesheet" th:href=@{/css/styleClient.css}>
+<link rel="stylesheet" th:href=@{/css/styleCustomer.css}>
+</head>
+
+<body>
+	<nav id="navigation">
+		<div class="header-contain">
+			<div class="row header">
+				<div class="logo w-auto">
+					<a href="/"> <img th:src=@{/img/logo_sendo.jpg} alt=""
+						style="width: 87px; height: 48px" />
+					</a>
+				</div>
+				<div class="row header-search">
+					<div class="category-search w-auto">
+						<!-- <i class="fa-solid fa-bars"></i> -->
+						<div class="icon-category">
+							<a href="/category"> <svg xmlns="http://www.w3.org/2000/svg"
+									width="24" height="24" viewBox="0 0 24 24" version="1.1"
+									xmlns:xlink="http://www.w3.org/1999/xlink" class="d7e-0f24ac">
+                    <path
+										d="M9 2a2 2 0 012 2v5a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h5zm0 2H4v5h5V4zm11-2a2 2 0 012 2v5a2 2 0 01-2 2h-5a2 2 0 01-2-2V4a2 2 0 012-2h5zm0 2h-5v5h5V4zM9 13a2 2 0 012 2v5a2 2 0 01-2 2H4a2 2 0 01-2-2v-5a2 2 0 012-2h5zm0 2H4v5h5v-5zm8.5-2a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 2a2.5 2.5 0 000 5 2.5 2.5 0 000-5z"
+										fill="#6F787E" fill-rule="nonzero"></path>
+                  </svg>
+							</a>
+						</div>
+					</div>
+					<div class="search">
+						<input type="search" class="input-search"
+							placeholder="Tìm kiếm trên Sendo...." id="input-search" />
+					</div>
+					<div class="w-auto btn-contain-search">
+						<button type="button" class="btn-search w-auto"
+							onclick="btnSearch()">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</div>
+				<div class="row nav-right w-auto">
+					<a href="/cart" class="cart w-auto"> <i
+						class="fa-solid fa-cart-shopping"></i>
+					</a>
+					<th:block th:if="${username}">
+						<div class="login">
+							<button class="btn btn-login" id="btn-username-show">
+								<span th:text="${username}"></span>
+							</button>
+							<div class="login-detail" style="display: none;"
+								id="login-detail">
+								<ul>
+									<li><a href="/customer">Thông tin tài khoản tài khoản</a></li>
+									<li><a href="/logout">Thoát tài khoản</a></li>
+								</ul>
+							</div>
+						</div>
+					</th:block>
+					<th:block th:unless="${username}">
+						<div class="login">
+							<button class="btn btn-login" id="btn-login-show">
+								<span>Đăng nhập</span>
+							</button>
+						</div>
+					</th:block>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="overlay_3wVe"></div>
+	<div id="page-container">
+		<section class="container">
+			<div class="sections_2c_b">
+				<div class="item_3Mn1" th:each="listCategory, index : ${categories}">
+					<h3 class="title_2TsO">
+						<a style="font-size: 20px;" class="btn"
+							th:href="${'/category/' + listCategory.name}"
+							th:text="${listCategory.name}"></a>
+					</h3>
+					<div class="cateList_3rU6"
+						th:id="@{accordion{count}(count=${index.count})}">
+						<div class="catGroup_1GfJ">
+							<div class="parentCats_3yr4">
+								<a class="btn cat_2fQs" style="font-size: 15px;"
+									th:each="subCategory, indexSubCategory : ${listCategory.subCategories}"
+									th:if="${!subCategory.deleteStatus}"
+									th:href="${'/Subcategory/' + subCategory.name}"
+									th:text="${subCategory.name}"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="footer" style="font-size: 12px">
+		<div class="row">
+			<div class="col-sm-1">
+				<img
+					src="https://media3.scdn.vn/img4/2020/04_23/ymBl1oAoEhjY1O6VGsLd.png"
+					alt="" style="width: 80px; height: 48px" />
+			</div>
+			<div class="col-sm-5">
+				<span style="font-size: 14px; font-weight: bold">Công ty Cổ
+					phần Công nghệ Sen Đỏ</span> <br /> <span>Tầng 5, Tòa nhà A, Vườn
+					Ươm Doanh Nghiệp, Lô D.01, Đường Tân Thuận,</span> <br /> <span>KCX
+					Tân Thuận, Phường Tân Thuận Đông, Quận 7, Thành phố Hồ Chí Minh,
+					Việt Nam.</span> <br /> <span>Số ĐKKD: 0312776486</span>
+			</div>
+			<div class="col-sm-5 img-footer">
+				<img
+					src="https://media3.scdn.vn/img4/2022/06_08/1lFg9Uwn2FBAsKeVCGVk.png"
+					alt="" /> <img
+					src="https://media3.scdn.vn/img4/2022/06_08/gb4KWuzBjqG6edEmfnGF.png"
+					alt="" /> <img
+					src="https://media3.scdn.vn/img4/2022/06_08/kun6HROKp7f12SCrCVEJ.png"
+					alt="" />
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<script src="/js/client/layout.js"></script>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+</html>

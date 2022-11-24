@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutClient.html}"
+>
+  <head> </head>
+
+  <body>
+    <div layout:fragment="content">
+      <div class="container-profile mt-4">
+        <div class="row">
+          <div
+            class="col-sm-4"
+            th:replace="fragments/client/customer/LeftBar.html :: LeftBar"
+          ></div>
+          <div class="col-sm-8 right-user-profile border-start">
+            <div class="user-top-title">
+              <h4>Địa chỉ nhận hàng</h4>
+              <span style="color: red">Bạn có thể tạo tối đa 50 địa chỉ</span>
+            </div>
+            <th:block th:each="location: ${locations}">
+              <div class="col-sm-6 border rounded border-3 mt-4 p-2">
+                <!-- <p th:text="${location.name}" class="fw-bold"></p>
+                <p
+                  th:text="'Địa chỉ:' + ${location.address} + ' ' + ${location.ward} + ' ' + ${location.city}"
+                ></p> -->
+                <p th:text="'Phone: '+ ${user.phone}"></p>
+              </div>
+            </th:block>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      th:src="@{/js/client/user/handlerCustomer.js}"
+      th:inline="javascript"
+      layout:fragment="jsCode"
+    ></script>
+  </body>
+</html>

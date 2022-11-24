@@ -1,0 +1,28 @@
+h1 {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#form-add-product .error {
+  color: red;
+}
+
+#form-add-product input {
+  width: 300px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+#form-add-category .error {
+  color: red;
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head> </head>
+
+  <body>
+    <div>
+      <div class="navigation mb-2" th:fragment="Navigation">
+        <a href="/customer/order/wait-accept" class="btn">Chờ xác nhận</a>
+        <a href="/customer/order/has-accept" class="btn">Đã xác nhận</a>
+        <a href="/customer/order/delivery" class="btn">Đang vận chuyển</a>
+        <a href="/customer/order/completed" class="btn">Đã giao hàng</a>
+        <a href="/customer/order/has-cancel" class="btn">Đã hủy</a>
+      </div>
+    </div>
+  </body>
+</html>

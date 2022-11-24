@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutAdmin.html}">
+
+ 
+<head>
+</head>
+
+<body>
+  <div style="margin: 50px" layout:fragment="content">
+    <div class="row">
+      <div class="col-9">
+        <h1 style="text-align: center;">Category Management</h1>
+      </div>
+    </div>
+    <table class="table table-striped border" id="category-table">
+      <thead>
+        <tr>
+          <td></td>
+          <td>name</td>
+          <td>Slug</td>
+          <td>CreatedDate</td>
+          <td>UpdatedDate</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <th:block th:if="${not #lists.isEmpty(categories)}">
+          <tr th:each="category , index : ${categories}" th:id="@{accordion{id}(id=${category.id})}">
+            <td th:text="${index.count}"></td>
+            <td class="btn-view-subcategory"><a th:href="${'/admin/category/subcategory?id=' + category.id}" class=" text-secondary" th:text="${category.name}"></a></td>
+            <td th:text="${category.slug}"></td>
+            <td th:text="${category != null ? #temporals.format(category.createdDate, 'dd-MM-yyyy') : ''}"></td>
+            <td th:text="${category != null ? #temporals.format(category.UpdatedDate, 'dd-MM-yyyy') : ''}"></td>
+            <td>
+              <a th:href="${'/admin/category/update?id=' + category.id}" class="btn btn-primary">Edit</a>
+              <button type="button" class="btn btn-danger" th:onclick="categoryDelete(this.value)"
+                th:value="${category.id}">Delete</button>
+            </td>
+          </tr>
+        </th:block>
+      </tbody>
+    </table>
+    <form action="/admin/category/add" th:method="post" th:object="${categoryDTO}" id="form-add-category">
+      <h3>Add Category</h3>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="name">Name:</label>
+          </div>
+          <div class="col-sm-11">
+            <input type="text" id="name" name="name">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-1">
+            <label for="sub-sub-categories">Sub Categories</label>
+          </div>
+          <div class="col-sm-11">
+          <button type="button" class="text-success btn-add-sub-category" style="border: none; background-color: white;height: 50px;width: 50px;">
+            <i class="fa-solid fa-circle-plus" style="font-size: 20px;"></i>
+          </button>
+          <div id="sub-category-add">
+            
+          </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Add</a>
+    </form>
+  </div>
+</body>
+<script th:src="@{/js/admin/handlerViewCategory.js}" th:inline="javascript" layout:fragment="jsCode"></script>
+
+</html>

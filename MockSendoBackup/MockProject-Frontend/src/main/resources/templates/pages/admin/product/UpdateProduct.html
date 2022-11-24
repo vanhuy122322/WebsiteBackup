@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{LayoutAdmin.html}"
+>
+  <head> </head>
+
+  <body>
+    <div style="margin: 50px" layout:fragment="content">
+      <div class="row">
+        <div class="col-9">
+          <h1>Product View/Update</h1>
+        </div>
+      </div>
+      <form action="/admin/product/update" method="post" id="form-add-product">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="id"
+                name="id"
+                th:value="${product.id}"
+                hidden
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="name">Name:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                th:value="${product.name}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="price">Price:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="number"
+                id="price"
+                name="price"
+                th:value="${product.price}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="amount">Amount:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="number"
+                id="amout"
+                name="amount"
+                th:value="${product.amount}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="image">Image:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="image"
+                name="image"
+                th:value="${product.image}"
+              />
+              <img th:src="${product.image}" alt="" style="width: 70px" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="title">Title:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="title"
+                name="productDetail.title"
+                th:value="${product.productDetail.title}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="description">Description:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="description"
+                name="productDetail.description"
+                th:value="${product.productDetail.description}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="material">Material:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="material"
+                name="productDetail.material"
+                th:value="${product.productDetail.material}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="origin">Origin:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="origin"
+                name="productDetail.origin"
+                th:value="${product.productDetail.origin}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="size">Size:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="size"
+                name="productDetail.size"
+                th:value="${product.productDetail.size}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="color">Color:</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                id="color"
+                name="productDetail.color"
+                th:value="${product.productDetail.color}"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="category">Category</label>
+            </div>
+            <div class="col-sm-11">
+              <select
+                name="category"
+                onchange="onChangeCategory(this.value)"
+                id="select-category"
+              >
+                <th:block th:each="category, index : ${categories}">
+                  <option
+                    th:if="${!category.deleteStatus}"
+                    th:text="${category.name}"
+                    th:selected="${category.name == product.category}"
+                  ></option>
+                </th:block>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="sub-categories">Sub Category</label>
+            </div>
+            <div class="col-sm-11">
+              <input
+                type="text"
+                th:value="${product.subCategory}"
+                id="input-subCategory"
+                hidden
+              />
+              <select name="subCategory" id="wait-load-by-category">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <input
+          type="datetime"
+          th:value="${#temporals.format(product.createdDate, 'yyyy-MM-dd HH:mm:ss')}"
+          name="createdDate"
+          hidden
+        />
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+  </body>
+  <script
+    th:src="@{\js\admin\handlerViewProduct.js}"
+    th:inline="javascript"
+    layout:fragment="jsCode"
+  ></script>
+</html>
